@@ -7,12 +7,9 @@ class AuthServices {
   static signupUser(
       String email, String password, String name, BuildContext context) async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
-
       await FirebaseAuth.instance.currentUser!.updateDisplayName(name);
       await FirebaseAuth.instance.currentUser!.updateEmail(email);
-      //await FirestoreServices.saveUser(name, email, userCredential.user!.uid);
+   
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Registration Successful')));
     } on FirebaseAuthException catch (e) {
@@ -34,7 +31,7 @@ class AuthServices {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
 
-      ScaffoldMessenger.of(context)
+       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('You are Logged in')));
     } on FirebaseAuthException catch (e) {
 
@@ -46,17 +43,10 @@ class AuthServices {
             .showSnackBar(SnackBar(content: Text('Password did not match')));
       }
       else{
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Create an account')));
       }
     }
   }
 }
-// class FirestoreServices {
-//   static saveUser(String name, email, uid) async {
-//     await FirebaseFirestore.instance
-//         .collection('users')
-//         .doc(uid)
-//         .set({'email': email, 'name': name});
-//   }
-// }

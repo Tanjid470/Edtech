@@ -150,7 +150,7 @@ class _LoginFormState extends State<LoginForm> {
                       );
                     },
                     child: Text(
-                      "Froget password?",
+                      "Forget password?",
                       style: customSize(
                           15, const Color.fromARGB(255, 74, 39, 155)),
                     ),
