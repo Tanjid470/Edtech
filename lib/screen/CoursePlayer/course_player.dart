@@ -98,7 +98,7 @@ class _CoursePlayerPageState extends State<CoursePlayerPage> {
           Color.fromARGB(255, 74, 39, 155)
         ])),
         child: Padding(
-          padding: const EdgeInsets.all(1.0),
+          padding: const EdgeInsets.all(10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[

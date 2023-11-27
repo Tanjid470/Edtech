@@ -1,7 +1,7 @@
 import 'package:edtech/constants/app_colors.dart';
 import 'package:edtech/screen/Authentication/auth_services.dart';
 import 'package:edtech/constants/app_textStyle.dart';
-import 'package:edtech/screen/Authentication/test.dart';
+import 'package:edtech/screen/Authentication/animated_Text.dart';
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatefulWidget {

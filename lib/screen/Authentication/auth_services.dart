@@ -37,12 +37,17 @@ class AuthServices {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('You are Logged in')));
     } on FirebaseAuthException catch (e) {
+
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('No user Found with this Email')));
       } else if (e.code == 'wrong-password') {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('Password did not match')));
+      }
+      else{
+        ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Create an account')));
       }
     }
   }
