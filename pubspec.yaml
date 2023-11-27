@@ -42,6 +42,8 @@ dependencies:
   chewie: ^1.0.0
   fluttertoast: ^8.2.4
   youtube_player_flutter: ^8.1.2
+  animated_splash_screen:
+  animated_text_kit: any
   
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,6 @@
 import 'package:edtech/constants/app_colors.dart';
 import 'package:edtech/constants/app_textStyle.dart';
 import 'package:edtech/controller/dashboard_Controller.dart';
-import 'package:edtech/screen/CoursePlayer/test.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -99,7 +98,7 @@ class _CoursePlayerPageState extends State<CoursePlayerPage> {
           Color.fromARGB(255, 74, 39, 155)
         ])),
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(1.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -266,4 +265,14 @@ class _CoursePlayerPageState extends State<CoursePlayerPage> {
       ],
     ));
   }
+}
+
+
+
+class Subtitle {
+  final int start;
+  final int end;
+  final String text;
+
+  Subtitle({required this.start, required this.end, required this.text});
 }

@@ -1,7 +1,8 @@
+import 'package:edtech/constants/app_colors.dart';
 import 'package:edtech/screen/Authentication/auth_services.dart';
 import 'package:edtech/constants/app_textStyle.dart';
+import 'package:edtech/screen/Authentication/test.dart';
 import 'package:flutter/material.dart';
-
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -22,8 +23,14 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: AppColors.bgGradient, // Set your gradient here
+          ),
+        ),
         elevation: 0,
-        title:const Center(child:   Text('Authentication')),
+        title: const Center(child: Text('Authentication')),
       ),
       body: Form(
         key: _formKey,
@@ -32,6 +39,21 @@ class _LoginFormState extends State<LoginForm> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text(
+                "Welcome",
+                style: customSize(25, const Color.fromARGB(255, 74, 39, 155)),
+              ),
+              Text(
+                "to",
+                style: customSize(
+                  20,
+                  const Color.fromARGB(255, 40, 64, 143),
+                ),
+              ),
+              animationText(),
+              SizedBox(
+                height: 30,
+              ),
               // ======== Full Name ========
               login
                   ? Container()
@@ -56,8 +78,8 @@ class _LoginFormState extends State<LoginForm> {
 
               // ======== Email ========
               TextFormField(
-                key:const ValueKey('email'),
-                decoration:const InputDecoration(
+                key: const ValueKey('email'),
+                decoration: const InputDecoration(
                   hintText: 'Enter Email',
                 ),
                 validator: (value) {
@@ -74,8 +96,9 @@ class _LoginFormState extends State<LoginForm> {
                 },
               ),
               // ======== Password ========
+
               TextFormField(
-                key:const ValueKey('password'),
+                key: const ValueKey('password'),
                 obscureText: true,
                 decoration: const InputDecoration(
                   hintText: 'Enter Password',
@@ -94,12 +117,56 @@ class _LoginFormState extends State<LoginForm> {
                 },
               ),
               const SizedBox(
+                height: 2,
+              ),
+              !login
+                  ? Container()
+                  :
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            backgroundColor: const Color.fromARGB(255, 241, 238, 238),
+                            title: const Text(''),
+                            content: Text('This feature not added yet.',style: customSize(18, Colors.black),),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  // Perform an action when the user taps the button
+                                  Navigator.of(context)
+                                      .pop(); // Close the dialog
+                                },
+                                child:const Text('Close'),
+                              ),
+                              // Add more buttons or actions as needed
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    child: Text(
+                      "Froget password?",
+                      style: customSize(
+                          15, const Color.fromARGB(255, 74, 39, 155)),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
                 height: 30,
               ),
-              SizedBox(
+              Container(
                 height: 50,
                 width: double.infinity,
-                child: ElevatedButton(
+                decoration: BoxDecoration(
+                    gradient: AppColors.bgGradient,
+                    borderRadius: const BorderRadius.all(Radius.circular(10))),
+                child: TextButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
@@ -109,9 +176,12 @@ class _LoginFormState extends State<LoginForm> {
                                 email, password, fullname, context);
                       }
                     },
-                    child: Text(login ? 'Login' : 'Signup',style:customSize(20,Colors.white),)),
+                    child: Text(
+                      login ? 'Login' : 'Signup',
+                      style: customSize(20, Colors.white),
+                    )),
               ),
-            const SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               TextButton(
@@ -120,15 +190,16 @@ class _LoginFormState extends State<LoginForm> {
                       login = !login;
                     });
                   },
-                  child: Text(login
-                      ? "Don't have an account? Signup"
-                      : "Already have an account? Login",style: customSize(16,Colors.blue),))
+                  child: Text(
+                    login
+                        ? "Don't have an account? Signup"
+                        : "Already have an account? Login",
+                    style: customSize(16, Colors.blue),
+                  ))
             ],
           ),
         ),
       ),
     );
   }
-
-  
 }
