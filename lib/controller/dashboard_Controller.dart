@@ -22,11 +22,7 @@ class DashBoardController extends GetxController {
     'Module 3: Final Project',
     // Add more modules as needed
   ];
-  List<String> videos = [
-    'g_sfv9IVCu4',
-    '0sacQ4oo-P0',
-    'oi6zk7cVHUw',
-  ];
+ 
 }
 
 class Course {

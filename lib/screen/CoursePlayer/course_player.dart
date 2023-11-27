@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class CoursePlayerPage extends StatefulWidget {
-  //final String videoId = 'g_sfv9IVCu4';
+
   @override
   _CoursePlayerPageState createState() => _CoursePlayerPageState();
 }
@@ -18,6 +18,11 @@ class _CoursePlayerPageState extends State<CoursePlayerPage> {
   DashBoardController dashBoardController = Get.put(DashBoardController());
 
   late YoutubePlayerController _controller;
+   List<String> videoId= [
+    '5F-6n_2XWR8',
+    'c1xLMaTUWCY',
+    'oi6zk7cVHUw',
+  ];
 
   List<Subtitle> subtitle = [
     Subtitle(start: 2, end: 10, text: "Animated Contatiner Widget in Flutter"),
@@ -33,7 +38,7 @@ class _CoursePlayerPageState extends State<CoursePlayerPage> {
     super.initState();
     setState(() {
       _controller = YoutubePlayerController(
-          initialVideoId: dashBoardController.videos[currentModuleIndex],
+          initialVideoId: videoId[currentModuleIndex],
           flags: const YoutubePlayerFlags(autoPlay: true, mute: false))
         ..addListener(_onPlayerStateChange);
     });
@@ -50,6 +55,9 @@ class _CoursePlayerPageState extends State<CoursePlayerPage> {
         subtitleText = currentSubtitle.text;
       });
     }
+  }
+    void _loadVideo(int index) {
+    _controller.load(videoId[index]);
   }
 
   // Mock function to simulate video playback time update
@@ -91,7 +99,7 @@ class _CoursePlayerPageState extends State<CoursePlayerPage> {
           Color.fromARGB(255, 74, 39, 155)
         ])),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(10.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -131,6 +139,7 @@ class _CoursePlayerPageState extends State<CoursePlayerPage> {
                       ? () {
                           setState(() {
                             currentModuleIndex--;
+                            _loadVideo(currentModuleIndex);
                           });
                         }
                       : null,
@@ -139,7 +148,7 @@ class _CoursePlayerPageState extends State<CoursePlayerPage> {
                     style: customSize(10, Colors.white),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 2,
                 ),
                 ElevatedButton(
@@ -152,6 +161,7 @@ class _CoursePlayerPageState extends State<CoursePlayerPage> {
                       ? () {
                           setState(() {
                             currentModuleIndex++;
+                            _loadVideo(currentModuleIndex);
                           });
                         }
                       : null,
